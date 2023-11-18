@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class SampleFilterConfig {
 
-    @Bean
+//    @Bean
     fun gatewayRoutes(
         builder: RouteLocatorBuilder,
         globalFilter: SampleGlobalFilter,
@@ -22,7 +22,7 @@ class SampleFilterConfig {
             filters {
                 addRequestHeader("first-service-request", "first-request-header")
                 addResponseHeader("first-service-response", "first-response-header")
-                filter(customFilter.apply(Any()))
+//                filter(customFilter.apply(Any()))
             }
             uri("http://localhost:8080")
         }

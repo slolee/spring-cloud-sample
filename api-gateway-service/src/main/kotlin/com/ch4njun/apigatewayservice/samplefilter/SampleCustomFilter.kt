@@ -6,18 +6,27 @@ import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFac
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
 
+private val logger = KotlinLogging.logger { }
+
 @Component
-class SampleCustomFilter : AbstractGatewayFilterFactory<Any>() {
+class SampleCustomFilter : AbstractGatewayFilterFactory<SampleCustomFilter.Config>(Config::class.java) {
 
-    private val logger = KotlinLogging.logger { }
+    data class Config(
+        val isPreLogging: Boolean = true,
+        val isPostLogging: Boolean = true
+    )
 
-    override fun apply(config: Any?) = GatewayFilter { exchange, chain ->
+    override fun apply(config: Config) = GatewayFilter { exchange, chain ->
         val request = exchange.request
         val response = exchange.response
 
-        logger.info { "Custom PRE Filter : request_id -> ${request.id}" }
+        if (config.isPreLogging) {
+            logger.info { "Custom PRE Filter : request_id -> ${request.id}" }
+        }
         chain.filter(exchange).then(Mono.fromRunnable {
-            logger.info { "Custom POST Filter : response_code -> ${response.statusCode}" }
+            if (config.isPostLogging) {
+                logger.info { "Custom POST Filter : response_code -> ${response.statusCode}" }
+            }
         })
     }
 }
