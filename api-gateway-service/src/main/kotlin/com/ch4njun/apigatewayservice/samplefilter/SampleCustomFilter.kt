@@ -1,4 +1,4 @@
-package com.ch4njun.apigatewayservice.config
+package com.ch4njun.apigatewayservice.samplefilter
 
 import mu.KotlinLogging
 import org.springframework.cloud.gateway.filter.GatewayFilter
