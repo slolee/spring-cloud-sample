@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class SampleFilterConfig {
 
-    @Bean
+//    @Bean
     fun gatewayRoutes(builder: RouteLocatorBuilder) = builder.routes {
         route {
             path("/first-service/**")

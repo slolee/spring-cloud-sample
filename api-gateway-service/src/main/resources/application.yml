@@ -11,3 +11,12 @@ eureka:
 spring:
   application:
     name: api-gateway-service
+  cloud:
+    gateway:
+      routes:
+#        - id: first-service
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=/first-service/**
+#          filters:
+#            - SampleCustomFilter
