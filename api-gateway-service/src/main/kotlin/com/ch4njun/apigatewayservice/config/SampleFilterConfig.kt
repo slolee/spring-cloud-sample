@@ -18,17 +18,6 @@ class SampleFilterConfig {
         customFilter: SampleCustomFilter
     ) = builder.routes {
         route {
-            filters {
-                filter(
-                    globalFilter.apply(
-                        SampleGlobalFilter.Config(
-                            baseMessage = "ch4njun base message",
-                            isPreLogging = true,
-                            isPostLogging = false
-                        )
-                    )
-                )
-            }
             path("/first-service/**")
             filters {
                 addRequestHeader("first-service-request", "first-request-header")

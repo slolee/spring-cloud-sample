@@ -1,34 +1,30 @@
 package com.ch4njun.apigatewayservice.samplefilter
 
 import mu.KotlinLogging
-import org.springframework.cloud.gateway.filter.GatewayFilter
-import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
+import org.springframework.cloud.gateway.filter.GatewayFilterChain
+import org.springframework.cloud.gateway.filter.GlobalFilter
+import org.springframework.core.Ordered
+import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Component
+import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
 @Component
-class SampleGlobalFilter : AbstractGatewayFilterFactory<SampleGlobalFilter.Config>() {
-
-    data class Config(
-        val baseMessage: String,
-        val isPreLogging: Boolean,
-        val isPostLogging: Boolean
-    )
+class SampleGlobalFilter : GlobalFilter, Ordered {
 
     private val logger = KotlinLogging.logger { }
 
-    override fun apply(config: Config) = GatewayFilter { exchange, chain ->
+    override fun filter(exchange: ServerWebExchange, chain: GatewayFilterChain): Mono<Void> {
         val request = exchange.request
         val response = exchange.response
 
-        logger.info { "Base Message : ${config.baseMessage}" }
-        if (config.isPreLogging) {
             logger.info { "Custom PRE Global Filter : request_id -> ${request.id}" }
-        }
-        chain.filter(exchange).then(Mono.fromRunnable {
-            if (config.isPostLogging) {
-                logger.info { "Custom POST Global Filter : response_code -> ${response.statusCode}" }
-            }
+        return chain.filter(exchange).then(Mono.fromRunnable {
+            logger.info { "Custom POST Global Filter : response_code -> ${response.statusCode}" }
         })
+    }
+
+    override fun getOrder(): Int {
+        return -1
     }
 }
