@@ -1,4 +1,4 @@
-package com.ch4njun.userservice.app.user
+package com.ch4njun.userservice
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
