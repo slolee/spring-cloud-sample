@@ -1,6 +1,7 @@
 package com.ch4njun.userservice.app.user.controller
 
 import com.ch4njun.userservice.app.user.request.RegisterRequest
+import com.ch4njun.userservice.app.user.response.RegisterResponse
 import com.ch4njun.userservice.app.user.service.UserService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
@@ -20,7 +21,7 @@ class UserController(
     fun welcome() = message
 
     @PostMapping("/user")
-    fun register(@RequestBody req: RegisterRequest) {
-        userService.createUser(req)
+    fun register(@RequestBody req: RegisterRequest): RegisterResponse {
+        return userService.createUser(req)
     }
 }

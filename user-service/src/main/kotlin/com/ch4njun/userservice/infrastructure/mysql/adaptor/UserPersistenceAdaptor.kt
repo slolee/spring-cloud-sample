@@ -9,10 +9,9 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class UserPersistenceAdaptor(
-    private val userJpaRepository: UserJpaRepository
+    private val userJpaRepository: UserJpaRepository,
+    private val userEntityMapper: UserEntityMapper
 ) : UserPersistencePort {
-
-    private val userEntityMapper: UserEntityMapper = UserEntityMapperImpl()
 
     override fun save(user: User): User {
         return userEntityMapper.toJpaEntity(user)

@@ -4,7 +4,7 @@ import com.ch4njun.userservice.domain.entity.User
 import com.ch4njun.userservice.infrastructure.mysql.entity.UserJpaEntity
 import org.mapstruct.Mapper
 
-@Mapper
+@Mapper(componentModel = "spring")
 interface UserEntityMapper {
 
     fun toJpaEntity(user: User): UserJpaEntity
