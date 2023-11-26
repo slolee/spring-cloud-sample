@@ -1,4 +1,4 @@
-package com.ch4njun.userservice.controller
+package com.ch4njun.userservice.app.user
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

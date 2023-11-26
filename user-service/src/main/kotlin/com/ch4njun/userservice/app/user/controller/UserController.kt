@@ -1,4 +1,4 @@
-package com.ch4njun.userservice.controller
+package com.ch4njun.userservice.app.user.controller
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
