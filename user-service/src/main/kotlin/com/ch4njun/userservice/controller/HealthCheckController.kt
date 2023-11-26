@@ -1,4 +1,4 @@
-package com.ch4njun.userservice
+package com.ch4njun.userservice.controller
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HealthCheckController {
 
-    @GetMapping("/ping")
-    fun ping(): String {
-        return "pong"
+    @GetMapping("/health_check")
+    fun status(): String {
+        return "It's Working in User Service."
     }
 }
