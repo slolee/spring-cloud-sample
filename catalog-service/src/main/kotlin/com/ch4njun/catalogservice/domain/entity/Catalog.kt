@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 class Catalog(
     val id: Long,
-    val productId: Long,
+    val productId: String,
     val productName: String,
     val stock: Int,
     val unitPrice: Int,
