@@ -18,4 +18,9 @@ class UserPersistenceAdaptor(
             .let { userJpaRepository.save(it) }
             .let { userEntityMapper.toDomainEntity(it) }
     }
+
+    override fun findAll(): List<User> {
+        return userJpaRepository.findAll()
+            .map { userEntityMapper.toDomainEntity(it) }
+    }
 }

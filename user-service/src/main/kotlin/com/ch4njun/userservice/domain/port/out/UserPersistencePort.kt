@@ -5,4 +5,5 @@ import com.ch4njun.userservice.domain.entity.User
 interface UserPersistencePort {
 
     fun save(user: User): User
+    fun findAll(): List<User>
 }
