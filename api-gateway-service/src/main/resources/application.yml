@@ -22,7 +22,7 @@ spring:
             - RewritePath=/user-service/(?<argument>.*), /$\{argument}
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
-          predicates:t s
+          predicates:
             - Path=/catalog-service/**
           filters:
             - RewritePath=/catalog-service/(?<argument>.*), /$\{argument}
