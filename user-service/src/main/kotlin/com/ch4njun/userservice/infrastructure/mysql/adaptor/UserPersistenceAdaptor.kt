@@ -5,6 +5,7 @@ import com.ch4njun.userservice.domain.port.out.UserPersistencePort
 import com.ch4njun.userservice.infrastructure.mysql.mapper.UserEntityMapper
 import com.ch4njun.userservice.infrastructure.mysql.mapper.UserEntityMapperImpl
 import com.ch4njun.userservice.infrastructure.mysql.repository.UserJpaRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -22,5 +23,10 @@ class UserPersistenceAdaptor(
     override fun findAll(): List<User> {
         return userJpaRepository.findAll()
             .map { userEntityMapper.toDomainEntity(it) }
+    }
+
+    override fun findById(userId: String): User? {
+        return userJpaRepository.findByIdOrNull(userId)
+            ?.let { userEntityMapper.toDomainEntity(it) }
     }
 }

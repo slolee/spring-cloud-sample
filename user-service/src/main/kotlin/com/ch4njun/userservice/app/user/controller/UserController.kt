@@ -6,6 +6,7 @@ import com.ch4njun.userservice.app.user.response.UserResponse
 import com.ch4njun.userservice.app.user.service.UserService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -23,12 +24,16 @@ class UserController(
 
     @PostMapping("/user")
     fun register(@RequestBody req: RegisterRequest): RegisterResponse {
-        return userService.create(req)
+        return userService.register(req)
     }
 
     @GetMapping("/users")
     fun retrieveAllUsers(): List<UserResponse> {
-        return userService.retrieveAll()
-            .map { UserResponse.from(it) }
+        return userService.retrieveAllUsers()
+    }
+
+    @GetMapping("/user/{userId}")
+    fun retrieveUser(@PathVariable userId: String): UserResponse {
+        return userService.retrieveUserInfo(userId)
     }
 }

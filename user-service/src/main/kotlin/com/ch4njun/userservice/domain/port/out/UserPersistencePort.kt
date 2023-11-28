@@ -6,4 +6,5 @@ interface UserPersistencePort {
 
     fun save(user: User): User
     fun findAll(): List<User>
+    fun findById(userId: String): User?
 }
