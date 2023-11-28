@@ -1,9 +1,10 @@
 package com.example.orderservice.domain.entity
 
+import util.mapstruct.Default
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
-class Order(
+class Order @Default constructor(
     val id: String,
     val productId: String,
     val qty: Int,
