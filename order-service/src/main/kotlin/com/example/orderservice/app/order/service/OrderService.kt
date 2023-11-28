@@ -23,7 +23,7 @@ class OrderService(
             ?: throw RuntimeException("찾을 수 없는 주문정보입니다. (orderId=$orderId)")
     }
 
-    fun retrieveAllByUser(userId: String): List<OrderResponse> {
+    fun retrieveAllOrdersByUser(userId: String): List<OrderResponse> {
         return orderPersistencePort.findAllByUserId(userId)
             .map { OrderResponse.from(it) }
     }

@@ -30,6 +30,6 @@ class OrderController(
 
     @GetMapping("{userId}/orders")
     fun retrieveAllOrdersByUser(@PathVariable userId: String): List<OrderResponse> {
-        return orderService.retrieveAllByUser(userId)
+        return orderService.retrieveAllOrdersByUser(userId)
     }
 }
