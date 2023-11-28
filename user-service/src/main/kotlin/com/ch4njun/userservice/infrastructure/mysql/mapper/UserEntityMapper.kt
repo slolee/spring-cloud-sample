@@ -7,6 +7,6 @@ import org.mapstruct.Mapper
 @Mapper(componentModel = "spring")
 interface UserEntityMapper {
 
-    fun toJpaEntity(user: User): UserJpaEntity
-    fun toDomainEntity(jpaEntity: UserJpaEntity): User
+    fun mapToJpaEntity(user: User): UserJpaEntity
+    fun mapToDomainEntity(userJpaEntity: UserJpaEntity): User
 }

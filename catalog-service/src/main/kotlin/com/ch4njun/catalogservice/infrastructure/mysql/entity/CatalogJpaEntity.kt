@@ -17,7 +17,7 @@ class CatalogJpaEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
-    val productId: Long,
+    val productId: String,
     val productName: String,
     val stock: Int,
     val unitPrice: Int,

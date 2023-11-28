@@ -1,5 +1,6 @@
 package com.ch4njun.userservice.infrastructure.mysql.entity
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
@@ -11,6 +12,7 @@ class UserJpaEntity(
 
     @Id
     val id: String,
+
     val email: String,
     val name: String,
     val password: String,

@@ -20,6 +20,12 @@ spring:
             - Path=/user-service/**
           filters:
             - RewritePath=/user-service/(?<argument>.*), /$\{argument}
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+          filters:
+            - RewritePath=/catalog-service/(?<argument>.*), /$\{argument}
 #        - id: first-service
 #          uri: http://localhost:8080
 #          predicates:

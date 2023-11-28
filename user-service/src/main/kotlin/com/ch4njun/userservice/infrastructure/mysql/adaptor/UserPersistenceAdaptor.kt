@@ -3,7 +3,6 @@ package com.ch4njun.userservice.infrastructure.mysql.adaptor
 import com.ch4njun.userservice.domain.entity.User
 import com.ch4njun.userservice.domain.port.out.UserPersistencePort
 import com.ch4njun.userservice.infrastructure.mysql.mapper.UserEntityMapper
-import com.ch4njun.userservice.infrastructure.mysql.mapper.UserEntityMapperImpl
 import com.ch4njun.userservice.infrastructure.mysql.repository.UserJpaRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
@@ -15,18 +14,18 @@ class UserPersistenceAdaptor(
 ) : UserPersistencePort {
 
     override fun save(user: User): User {
-        return userEntityMapper.toJpaEntity(user)
+        return userEntityMapper.mapToJpaEntity(user)
             .let { userJpaRepository.save(it) }
-            .let { userEntityMapper.toDomainEntity(it) }
+            .let { userEntityMapper.mapToDomainEntity(it) }
     }
 
     override fun findAll(): List<User> {
         return userJpaRepository.findAll()
-            .map { userEntityMapper.toDomainEntity(it) }
+            .map { userEntityMapper.mapToDomainEntity(it) }
     }
 
     override fun findById(userId: String): User? {
         return userJpaRepository.findByIdOrNull(userId)
-            ?.let { userEntityMapper.toDomainEntity(it) }
+            ?.let { userEntityMapper.mapToDomainEntity(it) }
     }
 }
